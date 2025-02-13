@@ -31,7 +31,75 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         fit: BoxFit.fill),
                   ),
                 ),
-                boxContentSection(),
+                Positioned(
+                  bottom: -50,
+                  left: 40,
+                  right: 20,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        height: 210,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(189, 127, 127, 124),
+                            borderRadius: BorderRadiusDirectional.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Join Our Community!',
+                                  style: TextStyle(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  'Share your moments to inspire and connect with others, spreading positivity and gratitude.',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: -34,
+                        right: 60,
+                        child: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 3, color: Colors.white),
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                                image: AssetImage(AssetPath.onBoardingImage),
+                                fit: BoxFit.fill),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 40,
+                        right: 0,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 3, color: Colors.white),
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                                image: AssetImage(AssetPath.onBoardingImage),
+                                fit: BoxFit.fill),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Positioned(
                   top: 32,
                   right: 20,
@@ -112,78 +180,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
         ),
       ],
-    );
-  }
-
-  Positioned boxContentSection() {
-    return Positioned(
-      bottom: -50,
-      left: 40,
-      right: 20,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            height: 210,
-            decoration: BoxDecoration(
-                color: Color.fromARGB(189, 127, 127, 124),
-                borderRadius: BorderRadiusDirectional.circular(20)),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text(
-                      'Join Our Community!',
-                      style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      'Share your moments to inspire and connect with others, spreading positivity and gratitude.',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: -34,
-            right: 60,
-            child: Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                border: Border.all(width: 3, color: Colors.white),
-                borderRadius: BorderRadius.circular(100),
-                image: DecorationImage(
-                    image: AssetImage(AssetPath.onBoardingImage),
-                    fit: BoxFit.fill),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 40,
-            right: 0,
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                border: Border.all(width: 3, color: Colors.white),
-                borderRadius: BorderRadius.circular(100),
-                image: DecorationImage(
-                    image: AssetImage(AssetPath.onBoardingImage),
-                    fit: BoxFit.fill),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

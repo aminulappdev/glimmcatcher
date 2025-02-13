@@ -11,4 +11,8 @@ class AssetPath {
   static const String fbLogo = '$imagePath/fbLogo.png';
   static const String googleLogo = '$imagePath/googleLogo.png';
   static const String googleLogoUp = '$imagePath/googleLogoUp.png';
+  static const String frame1000003796 = '$imagePath/Frame 1000003796.png';
+  static const String ellipse = '$imagePath/Ellipse 18.png';
+  static const String women = '$imagePath/women.jpg';
 }
+

@@ -9,9 +9,11 @@ class Glimmcatcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+
       theme: ThemeData(
+        elevatedButtonTheme: elevatedBottunThemeData(),
          inputDecorationTheme: inputDecoration(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 255, 255)),
         useMaterial3: true,
       ),
       home: const SplashScreen(),
@@ -28,6 +30,7 @@ class Glimmcatcher extends StatelessWidget {
       enabledBorder: inputBorder(),
       focusedBorder: inputBorder(),
       errorBorder: inputBorder(),
+      
     );
   }
 
@@ -42,4 +45,17 @@ class Glimmcatcher extends StatelessWidget {
   }
   
   
+  ElevatedButtonThemeData elevatedBottunThemeData() {
+    return ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.purpleAccent,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          fixedSize: const Size.fromWidth(double.maxFinite),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50)
+          )
+        ),
+      );              
+  }
 }

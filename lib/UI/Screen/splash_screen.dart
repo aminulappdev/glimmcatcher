@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:glimmcatcher/UI/Screen/new_onBoarding_screen.dart';
 import 'package:glimmcatcher/UI/Screen/on_boarding_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,10 +23,11 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 5));
 
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const OnBoardingScreen(),
-        ));
+      context,
+      MaterialPageRoute(
+        builder: (context) => const OnboardingView(),
+      ),
+    );
   }
 
   @override
@@ -69,24 +71,30 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 12,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFDB92FE),
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFDB92FE),
+                  foregroundColor: Colors.white,
+                  fixedSize: const Size.fromWidth(double.maxFinite),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  shadowColor: Color.fromARGB(255, 146, 75, 179),
+                  elevation: 5,
                 ),
-                shadowColor: Color.fromARGB(255, 146, 75, 179),
-                elevation: 5,
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                child: Text(
-                  "Get Started",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  child: Text(
+                    "Get Started",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
