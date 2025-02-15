@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/main_bottom_navbar_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -131,25 +131,5 @@ class OnboardingPage extends StatelessWidget {
       ],
     );
   }
-
-  // List<TextSpan> _buildHighlightedText() {
-  //   List<TextSpan> spans = [];
-  //   final words = title.split(' ');
-
-  //   for (var word in words) {
-  //     if (highlightedText.contains(word)) {
-  //       spans.add(TextSpan(
-  //         text: '$word ',
-  //         style: TextStyle(color: Colors.white),
-  //       ));
-  //     } else {
-  //       spans.add(TextSpan(
-  //         text: '$word ',
-  //         style: TextStyle(color: Colors.white),
-  //       ));
-  //     }
-  //   }
-
-  //   return spans;
-  // }
+ 
 }

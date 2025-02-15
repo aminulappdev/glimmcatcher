@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
-import 'package:glimmcatcher/UI/Widgets/tab_bar_login.dart';
-import 'package:glimmcatcher/UI/Widgets/tab_bar_signup.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/tab_bar_login.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/tab_bar_signup.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

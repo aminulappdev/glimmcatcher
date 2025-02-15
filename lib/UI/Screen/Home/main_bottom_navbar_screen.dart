@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/homepage.dart';
+import 'package:glimmcatcher/UI/Screen/Home/homepage.dart';
+import 'package:glimmcatcher/UI/Screen/Subscription/subscription_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Wallet/wallet_bar.dart';
 
 class MainButtonNavbarScreen extends StatefulWidget {
   const MainButtonNavbarScreen({super.key});
@@ -14,8 +16,8 @@ class _MainButtonNavbarScreenState extends State<MainButtonNavbarScreen> {
   // Dummy screens (Replace these with your actual screens)
  List<Widget> screens = const [
     Homepage(),
-    Homepage(),
-    Homepage(),
+    SubscriptionScreen(),
+    WalletBarScreenState(),
     Homepage(),
   ];
 

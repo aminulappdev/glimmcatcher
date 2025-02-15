@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/otp_verify_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/otp_verify_screen.dart';
 import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/text_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Generate_Image/text_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -50,19 +50,7 @@ class _HomepageState extends State<Homepage> {
                   ),
             ],
           ),
-          // ListTile(
-          //   leading: CircleAvatar(
-          //     radius: 40,
-          //     backgroundImage: AssetImage(AssetPath.onBoardingImage),
-          //   ),
-          //   trailing: CircleAvatar(
-      
-          //     radius: 20,
-          //     backgroundImage: AssetImage(AssetPath.onBoardingImage),
-          //   ),
-          //   title:
-          //   subtitle: Text('How do you feel today ?'),
-          // ),
+        
           SizedBox(
             height: 8,
           ),
@@ -99,7 +87,9 @@ class _HomepageState extends State<Homepage> {
                         crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return Container(
+                        
                         decoration: BoxDecoration(
+                          image: DecorationImage(image: AssetImage(AssetPath.aiGenerate),fit: BoxFit.fill),
                           borderRadius: BorderRadius.circular(10),
                           color: const Color.fromARGB(255, 102, 49, 107),
                         ),

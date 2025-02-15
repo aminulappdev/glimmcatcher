@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/generate_ai_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Generate_Image/generate_ai_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 
 class CreatingSplashScreen extends StatefulWidget {

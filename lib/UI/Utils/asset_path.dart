@@ -14,5 +14,7 @@ class AssetPath {
   static const String frame1000003796 = '$imagePath/Frame 1000003796.png';
   static const String ellipse = '$imagePath/Ellipse 18.png';
   static const String women = '$imagePath/women.jpg';
+  static const String aiGenerate= '$imagePath/aiGenerate.jpg';
+  static const String music = '$imagePath/music.png';
 }
 

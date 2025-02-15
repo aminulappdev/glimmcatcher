@@ -37,7 +37,7 @@ class Glimmcatcher extends StatelessWidget {
   OutlineInputBorder inputBorder() {
     return OutlineInputBorder(  
       borderSide: BorderSide(
-        color: const Color.fromARGB(255, 188, 188, 188),
+        color: const Color.fromARGB(255, 161, 155, 155),
         width: 1
       ),
       borderRadius: BorderRadius.circular(14),

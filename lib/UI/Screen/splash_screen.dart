@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:glimmcatcher/UI/Screen/new_onBoarding_screen.dart';
-import 'package:glimmcatcher/UI/Screen/on_boarding_screen.dart';
+import 'package:glimmcatcher/UI/Widgets/onBoarding.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
 

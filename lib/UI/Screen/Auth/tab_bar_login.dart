@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/verify_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/verify_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 

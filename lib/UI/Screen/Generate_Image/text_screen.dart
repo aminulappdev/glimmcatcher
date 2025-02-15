@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/voice_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Generate_Image/voice_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextScreen extends StatefulWidget {

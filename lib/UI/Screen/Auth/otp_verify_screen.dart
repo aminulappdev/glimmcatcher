@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glimmcatcher/UI/Screen/reset_password_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/reset_password_screen.dart';
 import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
