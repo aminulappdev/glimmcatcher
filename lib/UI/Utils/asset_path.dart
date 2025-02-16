@@ -16,5 +16,6 @@ class AssetPath {
   static const String women = '$imagePath/women.jpg';
   static const String aiGenerate= '$imagePath/aiGenerate.jpg';
   static const String music = '$imagePath/music.png';
+  static const String downloadLight = '$imagePath/Download_light.png';
 }
 

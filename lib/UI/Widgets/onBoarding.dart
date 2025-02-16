@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/auth_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Home/page_view.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -58,7 +59,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       dotWidth: 10.0,
                       spacing: 16.0,
                       dotColor: Colors.grey,
-                      activeDotColor: const Color.fromARGB(255, 186, 60, 197),
+                      activeDotColor:  AppColors.themeColor,
                     ),
                   ),
                 ],

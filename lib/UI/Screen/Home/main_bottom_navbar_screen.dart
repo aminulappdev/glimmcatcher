@@ -40,23 +40,23 @@ class _MainButtonNavbarScreenState extends State<MainButtonNavbarScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                  icon: Icon(Icons.new_label,
+                  icon: Icon(Icons.home_outlined	,
                       color:
                           selectedKey == 0 ? Colors.white : Colors.purple[200]),
                   onPressed: () => setState(() => selectedKey = 0)),
               IconButton(
-                  icon: Icon(Icons.check_box,
+                  icon: Icon(Icons.emoji_events,
                       color:
                           selectedKey == 1 ? Colors.white : Colors.purple[200]),
                   onPressed: () => setState(() => selectedKey = 1)),
               SizedBox(width: 40), // Space for FAB
               IconButton(
-                  icon: Icon(Icons.close,
+                  icon: Icon(Icons.camera_alt_outlined,
                       color:
                           selectedKey == 2 ? Colors.white : Colors.purple[200]),
                   onPressed: () => setState(() => selectedKey = 2)),
               IconButton(
-                  icon: Icon(Icons.circle,
+                  icon: Icon(Icons.person_outline,
                       color:
                           selectedKey == 3 ? Colors.white : Colors.purple[200]),
                   onPressed: () => setState(() => selectedKey = 3)),

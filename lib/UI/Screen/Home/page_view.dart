@@ -27,7 +27,7 @@ class OnboardingPage extends StatelessWidget {
           height: 600,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.amber,
+            
             image: DecorationImage(
                 image: AssetImage(AssetPath.onBoardingImage), fit: BoxFit.fill),
           ),

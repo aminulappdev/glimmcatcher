@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -11,6 +10,8 @@ class SignUpTabBar extends StatefulWidget {
 }
 
 class _SignUpTabBarState extends State<SignUpTabBar> {
+  bool _obscureText = true;
+  bool _confirmObscureText = true;
   String? selectedGender;
   @override
   Widget build(BuildContext context) {
@@ -117,13 +118,22 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
                 height: 4,
               ),
               TextFormField(
+                obscureText: _obscureText,
                 decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.visibility,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
                       color: Colors.grey,
                     ),
-                    hintText: '***********',
-                    hintStyle: TextStyle(color: Colors.grey)),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
+                  hintText: '***********',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
               ),
               Text(
                 'Confirm Password',
@@ -135,13 +145,22 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
                 height: 4,
               ),
               TextFormField(
+                obscureText: _confirmObscureText,
                 decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.visibility,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
                       color: Colors.grey,
                     ),
-                    hintText: '***********',
-                    hintStyle: TextStyle(color: Colors.grey)),
+                    onPressed: () {
+                      setState(() {
+                        _confirmObscureText = !_confirmObscureText;
+                      });
+                    },
+                  ),
+                  hintText: '***********',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
               ),
               SizedBox(
                 height: 16,

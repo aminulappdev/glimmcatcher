@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PaymentDatailsFieldScreen extends StatefulWidget {
@@ -213,7 +214,7 @@ class _PaymentDatailsFieldScreenState extends State<PaymentDatailsFieldScreen> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Your action here
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => MainButtonNavbarScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent, // Transparent background
@@ -231,7 +232,7 @@ class _PaymentDatailsFieldScreenState extends State<PaymentDatailsFieldScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.arrow_back),
+                        Icon(Icons.arrow_back,color: Colors.black,),
                         SizedBox(width: 4,),
                         Text('Back to Homepage'),
                       ],

@@ -1,11 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/verify_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 
-class TabBarWithLogin extends StatelessWidget {
+class TabBarWithLogin extends StatefulWidget {
   const TabBarWithLogin({
     super.key,
     required this.checkBox,
@@ -15,6 +13,13 @@ class TabBarWithLogin extends StatelessWidget {
   final bool checkBox;
   final double width;
 
+  @override
+  State<TabBarWithLogin> createState() => _TabBarWithLoginState();
+}
+
+class _TabBarWithLoginState extends State<TabBarWithLogin> {
+  bool _obscureText = true; // Track password visibility
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,24 +57,49 @@ class TabBarWithLogin extends StatelessWidget {
                 height: 4,
               ),
               TextFormField(
+                obscureText: _obscureText,
                 decoration: InputDecoration(
-                    hintText: '******************',
-                    hintStyle: TextStyle(color: Colors.grey)),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
+                  hintText: '***********',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Checkbox(value: checkBox, onChanged: (v) {}),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!; // Toggle checkbox value
+                          });
+                        },
+                      ),
                       Text('Remember me'),
                     ],
                   ),
-                  Text(
-                    'Forgot password?',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w700),
+                  GestureDetector(
+                    onTap: () {
+                      // You can add navigation logic here for forgot password
+                      print("Forgot Password Clicked!");
+                    },
+                    child: Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ],
               ),
@@ -103,8 +133,7 @@ class TabBarWithLogin extends StatelessWidget {
                 ),
                 Text(
                   'Or',
-                  style:
-                      TextStyle(fontSize: 18, color: Colors.grey),
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
                 Container(
                   width: 160,
@@ -121,10 +150,9 @@ class TabBarWithLogin extends StatelessWidget {
             children: [
               Container(
                 height: 48,
-                width: width,
+                width: widget.width,
                 decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 1, color: Colors.grey),
+                    border: Border.all(width: 1, color: Colors.grey),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -142,9 +170,8 @@ class TabBarWithLogin extends StatelessWidget {
                     ),
                     Text(
                       'Continue with google',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -154,10 +181,9 @@ class TabBarWithLogin extends StatelessWidget {
               ),
               Container(
                 height: 48,
-                width: width,
+                width: widget.width,
                 decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 1, color: Colors.grey),
+                    border: Border.all(width: 1, color: Colors.grey),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -174,9 +200,8 @@ class TabBarWithLogin extends StatelessWidget {
                     ),
                     Text(
                       'Continue with facebook',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),

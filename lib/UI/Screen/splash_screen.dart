@@ -33,72 +33,79 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              AssetPath.splashScreenLogo,
-              width: 300,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              'Find your missing',
-              style: GoogleFonts.urbanist(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                  color: Color(0xFF585574)),
-            ),
-            Text(
-              'puzzle piece 💝😍',
-              style: GoogleFonts.urbanist(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 24,
-                  color: Color(0xFFDB92FE)),
-            ),
-            SizedBox(
-              width: 380,
-              child: Text(
-                'Find your missing one and share your passions, quirks, and everything in between. Your exciting adventure starts here! 😉',
-                style: GoogleFonts.urbanist(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                AssetPath.splashScreenLogo,
+                width: 300,
               ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFDB92FE),
-                  foregroundColor: Colors.white,
-                  fixedSize: const Size.fromWidth(double.maxFinite),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  shadowColor: Color.fromARGB(255, 146, 75, 179),
-                  elevation: 5,
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                'Find your missing',
+                style: GoogleFonts.urbanist(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24,
+                    color: Color(0xFF585574)),
+              ),
+              Text(
+                'puzzle piece 💝😍',
+                style: GoogleFonts.urbanist(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 24,
+                    color: Color(0xFFDB92FE)),
+              ),
+              SizedBox(
+                width: 380,
+                child: Text(
+                  'Find your missing one and share your passions, quirks, and everything in between. Your exciting adventure starts here! 😉',
+                  style: GoogleFonts.urbanist(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    "Get Started",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFDB92FE),
+                    foregroundColor: Colors.white,
+                    fixedSize: const Size.fromWidth(double.maxFinite),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    shadowColor: Color.fromARGB(255, 146, 75, 179),
+                    elevation: 5,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => OnboardingView()));
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      child: Text(
+                        "Get Started",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Screen/Generate_Image/creating_splash_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/voice_screen.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
 
 class TextScreen extends StatefulWidget {
   const TextScreen({super.key});
@@ -38,34 +41,27 @@ class _TextScreenState extends State<TextScreen> {
             ),
             TextFormField(
               maxLines: 6,
-              decoration: InputDecoration(   
-                hintText: 'Type anything',           
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 215, 49, 198),
-                      width: 1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 215, 49, 198),
-                      width: 1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 215, 49, 198),
-                      width: 1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
+              decoration: InputDecoration(
+                hintText: 'Type anything',
+                enabledBorder: GradientOutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                    gradient: LinearGradient(colors: AppColors.gradiantColors),
+                    width: 1),
               ),
             ),
             SizedBox(
               height: 16,
             ),
-            ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => VoiceScreen()));
-            }, child: Text('Save'))
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CreatingSplashScreen()));
+              },
+              child: Text(
+                'Save',
+                style: TextStyle(fontSize: 18),
+              ),
+            )
           ],
         ),
       ),

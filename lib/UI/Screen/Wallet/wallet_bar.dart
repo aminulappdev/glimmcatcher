@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Wallet/image_generate.dart';
 import 'package:glimmcatcher/UI/Screen/Wallet/wallet_text_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Wallet/wallet_voice_section.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WalletBarScreenState extends StatefulWidget {
@@ -37,11 +38,14 @@ class _WalletBarScreenStateState extends State<WalletBarScreenState> {
                     },
                     child: Text(
                       'Text',
-                      style: TextStyle(
+                      style: TextStyle(  
+                         decorationColor: AppColors.themeColor,
+                           decoration: selectedPage == 0 ? TextDecoration.underline :  TextDecoration.none,                
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: selectedPage == 0 ? Colors.red : Colors.black
+                        color: selectedPage == 0 ? AppColors.themeColor : Colors.black
                       ),
+                      
                     )),
                 GestureDetector(
                     onTap: () {
@@ -51,9 +55,11 @@ class _WalletBarScreenStateState extends State<WalletBarScreenState> {
                     child: Text(
                       'Voice',
                       style: TextStyle(
+                         decorationColor: AppColors.themeColor,
+                           decoration: selectedPage == 1 ? TextDecoration.underline :  TextDecoration.none,  
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: selectedPage == 1 ? Colors.red : Colors.black
+                        color: selectedPage == 1 ? AppColors.themeColor : Colors.black
                       ),
                     )),
                 GestureDetector(
@@ -64,9 +70,11 @@ class _WalletBarScreenStateState extends State<WalletBarScreenState> {
                     child: Text(
                       'Image/Video',
                       style: TextStyle(
+                         decorationColor: AppColors.themeColor,
+                           decoration: selectedPage == 2 ? TextDecoration.underline :  TextDecoration.none,  
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: selectedPage == 2 ? Colors.red : Colors.black
+                        color: selectedPage == 2 ? AppColors.themeColor: Colors.black
                       ),
                     )),
                 GestureDetector(
@@ -77,9 +85,11 @@ class _WalletBarScreenStateState extends State<WalletBarScreenState> {
                     child: Text(
                       'AI Generate',
                       style: TextStyle(
+                         decorationColor: AppColors.themeColor,
+                           decoration: selectedPage == 3 ? TextDecoration.underline :  TextDecoration.none,  
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: selectedPage == 3 ? Colors.red : Colors.black
+                        color: selectedPage == 3 ? AppColors.themeColor : Colors.black
                       ),
                     )),
               ],

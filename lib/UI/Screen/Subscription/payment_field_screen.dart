@@ -45,10 +45,8 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-              
                 children: [
                   GradientText(
                     'Account Name',
@@ -64,8 +62,7 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                   TextFormField(
                     decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Colors.transparent,
+                        fillColor: Colors.transparent,
                         hintText: 'Alex Carter',
                         hintStyle: GoogleFonts.nunito(color: Colors.black)),
                   ),
@@ -87,8 +84,8 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                     decoration: InputDecoration(
                         suffixIcon: Icon(Icons.visibility_off),
                         filled: true, // Enables fillColor
-                        fillColor:
-                            Colors.transparent, // Makes the background transparent
+                        fillColor: Colors
+                            .transparent, // Makes the background transparent
                         hintText: '123 123 123 123',
                         hintStyle: GoogleFonts.nunito(color: Colors.black)),
                   ),
@@ -120,8 +117,8 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                                     fillColor: Colors
                                         .transparent, // Makes the background transparent
                                     hintText: '123 123 123 123',
-                                    hintStyle:
-                                        GoogleFonts.nunito(color: Colors.black)),
+                                    hintStyle: GoogleFonts.nunito(
+                                        color: Colors.black)),
                               ),
                             ),
                           ],
@@ -150,8 +147,8 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                                     fillColor: Colors
                                         .transparent, // Makes the background transparent
                                     hintText: '123 123 123 123',
-                                    hintStyle:
-                                        GoogleFonts.nunito(color: Colors.black)),
+                                    hintStyle: GoogleFonts.nunito(
+                                        color: Colors.black)),
                               ),
                             ),
                           ],
@@ -159,15 +156,18 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                       ),
                     ],
                   ),
-                  
                 ],
-
               ),
-              
               GradientElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentDatailsFieldScreen(),));
-                  }, text: 'Subscribe', isRowButton: false)
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PaymentDatailsFieldScreen(),
+                        ));
+                  },
+                  text: 'Subscribe',
+                  isRowButton: false),
             ],
           ),
         ),

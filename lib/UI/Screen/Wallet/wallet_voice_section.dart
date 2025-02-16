@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class WalletVoiceScreen extends StatelessWidget {
   const WalletVoiceScreen({
@@ -40,9 +42,24 @@ class WalletVoiceScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.calendar_month),
-                            Text(
+                            ShaderMask(
+                              shaderCallback: (bounds) => LinearGradient(
+                                colors: [
+                                  Color(0xFFDB92FE),
+                                  Color(0xFFFBC774),
+                                ], // Provide at least two colors
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ).createShader(bounds),
+                              child: Icon(
+                                Icons.calendar_month,
+                                color: Colors
+                                    .white, // Keep this as white for the gradient effect to work
+                              ),
+                            ),
+                            GradientText(
                               '18 January 2025',
+                              colors: AppColors.gradiantColors,
                               style: GoogleFonts.urbanist(),
                             )
                           ],
@@ -59,10 +76,22 @@ class WalletVoiceScreen extends StatelessWidget {
                               fit: BoxFit.fill),
                           color: Colors.transparent),
                     ),
-                    Icon(
-                      Icons.play_circle,
-                      size: 32,
-                    )
+                    ShaderMask(
+                      shaderCallback: (bounds) => LinearGradient(
+                        colors: [
+                          Color(0xFFDB92FE),
+                          Color(0xFFFBC774),
+                        ], // Provide at least two colors
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ).createShader(bounds),
+                      child: Icon(
+                        size: 32,
+                        Icons.play_circle,
+                        color: Colors
+                            .white, // Keep this as white for the gradient effect to work
+                      ),
+                    ),
                   ],
                 ),
               ),

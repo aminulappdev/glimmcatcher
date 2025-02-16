@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/splash_screen.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 
 class Glimmcatcher extends StatelessWidget {
   const Glimmcatcher({super.key});
@@ -48,7 +49,7 @@ class Glimmcatcher extends StatelessWidget {
   ElevatedButtonThemeData elevatedBottunThemeData() {
     return ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.purpleAccent,
+          backgroundColor: AppColors.themeColor,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           fixedSize: const Size.fromWidth(double.maxFinite),
