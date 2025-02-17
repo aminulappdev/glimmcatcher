@@ -14,23 +14,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    _movetoNewScreen();
+    // _movetoNewScreen();
     super.initState();
-  }
-
-  Future<void> _movetoNewScreen() async {
-    await Future.delayed(const Duration(seconds: 5));
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const OnboardingView(),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -40,47 +31,46 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               SvgPicture.asset(
                 AssetPath.splashScreenLogo,
-                width: 300,
+                width: width/1.4,
               ),
               SizedBox(
-                height: 40,
+                height: height/20,
               ),
               Text(
                 'Find your missing',
                 style: GoogleFonts.urbanist(
                     fontWeight: FontWeight.w600,
-                    fontSize: 24,
+                    fontSize: height/32,
                     color: Color(0xFF585574)),
               ),
               Text(
                 'puzzle piece 💝😍',
                 style: GoogleFonts.urbanist(
                     fontWeight: FontWeight.w900,
-                    fontSize: 24,
+                    fontSize: height/36,
                     color: Color(0xFFDB92FE)),
               ),
               SizedBox(
-                width: 380,
+                width: width/1.1,
                 child: Text(
                   'Find your missing one and share your passions, quirks, and everything in between. Your exciting adventure starts here! 😉',
                   style: GoogleFonts.urbanist(
-                      fontSize: 16, fontWeight: FontWeight.w500),
+                      fontSize: height/52, fontWeight: FontWeight.w500),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
-                height: 12,
+                height: height/36,
               ),
               SizedBox(
-                width: 200,
+                width: width/2,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFDB92FE),
                     foregroundColor: Colors.white,
                     fixedSize: const Size.fromWidth(double.maxFinite),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -96,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       child: Text(
                         "Get Started",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: height/48,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -57,9 +57,6 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
               SizedBox(
                 height: 16,
               ),
-              SizedBox(
-                height: 8,
-              ),
               Text(
                 'Descriptions',
                 style: GoogleFonts.urbanist(
@@ -90,88 +87,11 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
               SizedBox(
                 height: 04,
               ),
-              DottedBorder(
-                borderType: BorderType.RRect,
-                radius: Radius.circular(8),
-                padding: EdgeInsets.all(6),
-                color: Colors.black,
-                strokeWidth: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  child: SizedBox(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(AssetPath.downloadLight),
-                                    fit: BoxFit.fill)),
-                          ),
-                          Text(
-                            'Drop your imager here, or browse jpg, png are allowed',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              uploadPhoto(context),
               SizedBox(
                 height: 16,
               ),
-              Center(
-                child: DottedBorder(
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(50),
-                  padding: EdgeInsets.all(6),
-                  color: AppColors.themeColor,
-                  strokeWidth: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
-                    child: SizedBox(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width,
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Capture',
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.grey),
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            ShaderMask(
-                              shaderCallback: (bounds) => LinearGradient(
-                                colors: [
-                                  Color(0xFFDB92FE),
-                                  Color(0xFFFBC774),
-                                ], // Provide at least two colors
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ).createShader(bounds),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors
-                                    .white, // Keep this as white for the gradient effect to work
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              captureButton(context),
               SizedBox(
                 height: 16,
               ),
@@ -194,6 +114,90 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
                 ),
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget uploadPhoto(BuildContext context) {
+    return DottedBorder(
+      borderType: BorderType.RRect,
+      radius: Radius.circular(8),
+      padding: EdgeInsets.all(6),
+      color: Colors.black,
+      strokeWidth: 1,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: SizedBox(
+          height: 100,
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AssetPath.downloadLight),
+                          fit: BoxFit.fill)),
+                ),
+                Text(
+                  'Drop your imager here, or browse jpg, png are allowed',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget captureButton(BuildContext context) {
+    return Center(
+      child: DottedBorder(
+        borderType: BorderType.RRect,
+        radius: Radius.circular(50),
+        padding: EdgeInsets.all(6),
+        color: AppColors.themeColor,
+        strokeWidth: 1,
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+          child: SizedBox(
+            height: 40,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Capture',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  ShaderMask(
+                    shaderCallback: (bounds) => LinearGradient(
+                      colors: [
+                        Color(0xFFDB92FE),
+                        Color(0xFFFBC774),
+                      ], // Provide at least two colors
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ).createShader(bounds),
+                    child: Icon(
+                      Icons.camera_alt_outlined,
+                      color: Colors
+                          .white, // Keep this as white for the gradient effect to work
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/creating_splash_screen.dart';
-import 'package:glimmcatcher/UI/Screen/Generate_Image/voice_screen.dart';
 import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';

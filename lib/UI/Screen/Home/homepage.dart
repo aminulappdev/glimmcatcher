@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/generate_ai_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/generate_image_video_screen.dart';
-import 'package:glimmcatcher/UI/Screen/Generate_Image/result_generate_ai_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/text_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/voice_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Home/notification_screen.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:glimmcatcher/UI/Widgets/drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,84 +65,83 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
             SizedBox(height: 20),
-            SizedBox(
-              height: 540,
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  return Container(
-                    // ignore: sort_child_properties_last
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          titles[index],
-                          style: GoogleFonts.urbanist(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => screens[index],
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 140,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFDB92FE),
-                                  Color(0xFFFBC774)
-                                ], // Define gradient colors
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Generate',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        )
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AssetPath.aiGenerate),
-                          fit: BoxFit.fill),
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 102, 49, 107),
-                    ),
-                  );
-                },
-              ),
-            ),
+            mainSection(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget mainSection() {
+    return SizedBox(
+      height: 540,
+      child: GridView.builder(
+        itemCount: 4,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 0.7,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          crossAxisCount: 2,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            // ignore: sort_child_properties_last
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  titles[index],
+                  style: GoogleFonts.urbanist(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => screens[index],
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 140,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: AppColors.gradiantColors, 
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Generate',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(AssetPath.aiGenerate), fit: BoxFit.fill),
+              borderRadius: BorderRadius.circular(10),
+              color: const Color.fromARGB(255, 102, 49, 107),
+            ),
+          );
+        },
       ),
     );
   }

@@ -3,16 +3,18 @@ import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:glimmcatcher/UI/Widgets/onBoarding.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final TextEditingController otpCtrl = TextEditingController();
-  bool _obscureText = true;
+
+   bool _obscureText = true;
   bool _confirmObscureText = true;
 
   @override
@@ -20,8 +22,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return SafeArea(
       child: Scaffold(
         body: AuthScreenBackground(
-          header: 'Reset Password',
-          title: 'Reset your password',
+          header: 'Change password',
+          title: 'Change your password',
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -33,7 +35,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      resetPasswordFormBuild(),
+                      changePasswordFormBuild(),
                     ],
                   ),
                 )
@@ -45,13 +47,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     );
   }
 
-  Widget resetPasswordFormBuild() {
+  Widget changePasswordFormBuild() {
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Set Password',
+           Text(
+            'Old Password',
             style: TextStyle(
                 color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
           ),
@@ -75,6 +77,38 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               hintText: '***********',
               hintStyle: TextStyle(color: Colors.grey),
             ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+           Text(
+            'New Password',
+            style: TextStyle(
+                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          TextFormField(
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              ),
+              hintText: '***********',
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
+          ),
+          SizedBox(
+            height: 16,
           ),
           Text(
             'Confirm Password',

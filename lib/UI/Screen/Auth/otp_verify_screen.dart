@@ -32,7 +32,7 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      loginSection(),
+                      otpFormBuild(),
                     ],
                   ),
                 )
@@ -44,38 +44,46 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
     );
   }
 
-  Widget loginSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PinCodeTextField(
-          controller: otpCtrl,
-          length: 4,
-          animationType: AnimationType.fade,
-          keyboardType: TextInputType.number,
-          pinTheme: PinTheme(
-              borderWidth: 0.2,
-              shape: PinCodeFieldShape.box,
-              borderRadius: BorderRadius.circular(5),
-              inactiveColor: Colors.grey, // Border color when not filled
-              fieldHeight: 60,
-              fieldWidth: 70,
-              activeFillColor: Colors.white,
-              inactiveFillColor: Colors.white,
-              selectedFillColor: Colors.white),
-          animationDuration: const Duration(milliseconds: 300),
-          backgroundColor: Colors.transparent,
-          enableActiveFill: true,
-          appContext: context,
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        GradientElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordScreen(),));
-            }, text: 'Confirm', isRowButton: false),
-      ],
+  Widget otpFormBuild() {
+    return Form(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PinCodeTextField(
+            controller: otpCtrl,
+            length: 4,
+            animationType: AnimationType.fade,
+            keyboardType: TextInputType.number,
+            pinTheme: PinTheme(
+                borderWidth: 0.2,
+                shape: PinCodeFieldShape.box,
+                borderRadius: BorderRadius.circular(5),
+                inactiveColor: Colors.grey, // Border color when not filled
+                fieldHeight: 60,
+                fieldWidth: 70,
+                activeFillColor: Colors.white,
+                inactiveFillColor: Colors.white,
+                selectedFillColor: Colors.white),
+            animationDuration: const Duration(milliseconds: 300),
+            backgroundColor: Colors.transparent,
+            enableActiveFill: true,
+            appContext: context,
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          GradientElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResetPasswordScreen(),
+                    ));
+              },
+              text: 'Confirm',
+              isRowButton: false),
+        ],
+      ),
     );
   }
 }

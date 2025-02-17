@@ -44,17 +44,14 @@ class WalletVoiceScreen extends StatelessWidget {
                           children: [
                             ShaderMask(
                               shaderCallback: (bounds) => LinearGradient(
-                                colors: [
-                                  Color(0xFFDB92FE),
-                                  Color(0xFFFBC774),
-                                ], // Provide at least two colors
+                               colors: AppColors.gradiantColors, 
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ).createShader(bounds),
                               child: Icon(
                                 Icons.calendar_month,
                                 color: Colors
-                                    .white, // Keep this as white for the gradient effect to work
+                                    .white, 
                               ),
                             ),
                             GradientText(
@@ -78,10 +75,7 @@ class WalletVoiceScreen extends StatelessWidget {
                     ),
                     ShaderMask(
                       shaderCallback: (bounds) => LinearGradient(
-                        colors: [
-                          Color(0xFFDB92FE),
-                          Color(0xFFFBC774),
-                        ], // Provide at least two colors
+                       colors: AppColors.gradiantColors, 
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ).createShader(bounds),
@@ -89,7 +83,7 @@ class WalletVoiceScreen extends StatelessWidget {
                         size: 32,
                         Icons.play_circle,
                         color: Colors
-                            .white, // Keep this as white for the gradient effect to work
+                            .white, 
                       ),
                     ),
                   ],

@@ -60,7 +60,7 @@ class _CreatingSplashScreenState extends State<CreatingSplashScreen>
                 animation: _controller,
                 builder: (context, child) {
                   return Transform.rotate(
-                    angle: _controller.value * 6.2832, // 360 degrees in radians
+                    angle: _controller.value * 6.2832, 
                     child: child,
                   );
                 },

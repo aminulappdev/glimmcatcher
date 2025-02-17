@@ -15,7 +15,9 @@ class NotificationScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
+      body: ListView.builder(
+        itemCount: 8,
+        itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(

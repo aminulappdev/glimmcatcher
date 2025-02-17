@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/app.dart';
 
-void main() {
-  runApp(const Glimmcatcher());
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(Glimmcatcher());
 }

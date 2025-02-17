@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 
 class ImageGenerateScreen extends StatefulWidget {
@@ -41,10 +42,7 @@ class _ImageGenerateScreenState extends State<ImageGenerateScreen> {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xffDB92FE),
-                      Color(0xffFBC774),
-                    ]),
+                   colors: AppColors.gradiantColors, ),
                 borderRadius: BorderRadius.circular(100)),
             child: Icon(
               Icons.download,

@@ -43,8 +43,6 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
               ],
             ),
-            
-           
             Positioned(
               bottom: 150,
               left: 0,
@@ -59,7 +57,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       dotWidth: 10.0,
                       spacing: 16.0,
                       dotColor: Colors.grey,
-                      activeDotColor:  AppColors.themeColor,
+                      activeDotColor: AppColors.themeColor,
                     ),
                   ),
                 ],
@@ -70,22 +68,21 @@ class _OnboardingViewState extends State<OnboardingView> {
               left: 0,
               bottom: 40,
               child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: GradientElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AuthScreen(),
-                    ),
-                  );
-                },
-                text: 'Next',
-                isRowButton: true,
+                padding: const EdgeInsets.all(15.0),
+                child: GradientElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthScreen(),
+                      ),
+                    );
+                  },
+                  text: 'Next',
+                  isRowButton: true,
+                ),
               ),
             ),
-            ),
-           
           ],
         ),
       ),
