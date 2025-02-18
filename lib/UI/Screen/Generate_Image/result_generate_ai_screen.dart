@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +17,8 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -26,11 +29,11 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
           centerTitle: true,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(height / 72),
           child: Column(
             children: [
               Container(
-                height: 400,
+                height: height / 2.2,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -39,7 +42,7 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
                     color: Colors.blueAccent),
               ),
               SizedBox(
-                height: 8,
+                height: height / 72,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,9 +52,9 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
                     style: GoogleFonts.urbanist(
                         color: Color(0xFF585574),
                         fontWeight: FontWeight.w700,
-                        fontSize: 20),
+                        fontSize: height / 44),
                   ),
-                  toggleButton()
+                  toggleButton(height, width)
                 ],
               ),
               Text(
@@ -59,18 +62,23 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
                 style: GoogleFonts.urbanist(
                     color: Color(0xFF585574),
                     fontWeight: FontWeight.w500,
-                    fontSize: 14),
+                    fontSize: height / 58),
               ),
               SizedBox(
-                height: 16,
+                height: height / 48,
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MainButtonNavbarScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainButtonNavbarScreen(),
+                      ),
+                    );
                   },
                   child: Text('Save')),
               SizedBox(
-                height: 4,
+                height: height / 200,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -87,11 +95,14 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
                   ),
                 ),
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MainButtonNavbarScreen(),));
-
-                  },
-                  child: Text('Share')),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainButtonNavbarScreen(),
+                          ));
+                    },
+                    child: Text('Share')),
               )
             ],
           ),
@@ -100,7 +111,7 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
     );
   }
 
-  GestureDetector toggleButton() {
+  GestureDetector toggleButton(double height, double width) {
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -108,13 +119,13 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
         });
       },
       child: Container(
-        width: 70,
-        height: 36,
+        width: width / 6,
+        height: height / 23,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFDB92FE), Color(0xFFFBC774)], // Gradient colors
+            colors: AppColors.gradiantColors, // Gradient colors
           ),
           borderRadius: BorderRadius.circular(100),
         ),
@@ -124,11 +135,11 @@ class _ResultGenerateAiScreenState extends State<ResultGenerateAiScreen> {
             AnimatedPositioned(
               duration: Duration(milliseconds: 300), // Smooth animation time
               curve: Curves.easeInOut, // Smooth animation effect
-              left: isToggled ? 36 : 2, // Move right when toggled
+              left: isToggled ? 30 : 2, // Move right when toggled
               top: 2, // Keep it centered vertically
               child: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 58, 55, 46),
-                radius: 16,
+                radius: height / 50,
               ),
             ),
           ],

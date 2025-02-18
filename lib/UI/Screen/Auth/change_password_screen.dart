@@ -3,7 +3,6 @@ import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:glimmcatcher/UI/Widgets/onBoarding.dart';
 
-
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
 
@@ -13,12 +12,14 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final TextEditingController otpCtrl = TextEditingController();
-
-   bool _obscureText = true;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
   bool _confirmObscureText = true;
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: AuthScreenBackground(
@@ -28,14 +29,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: height / 80,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(14.0),
+                  padding: EdgeInsets.all(height / 58),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      changePasswordFormBuild(),
+                      changePasswordFormBuild(height, width),
                     ],
                   ),
                 )
@@ -47,20 +48,30 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     );
   }
 
-  Widget changePasswordFormBuild() {
+  Widget changePasswordFormBuild(double height, double width) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
+          Text(
             'Old Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _obscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -79,17 +90,26 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: height / 48,
           ),
-           Text(
+          Text(
             'New Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _obscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -108,17 +128,26 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: height / 48,
           ),
           Text(
             'Confirm Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
-         TextFormField(
+          TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _confirmObscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -137,21 +166,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: height / 48,
           ),
           GradientElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OnboardingView(),
-                    ));
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OnboardingView(),
+                      ));
+                }
               },
               text: 'Confirm',
               isRowButton: false),
-          SizedBox(
-            height: 50,
-          ),
         ],
       ),
     );

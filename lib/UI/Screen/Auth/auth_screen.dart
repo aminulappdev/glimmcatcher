@@ -12,24 +12,28 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   bool checkBox = false;
-   bool isLoginTab = true;
+  bool isLoginTab = true;
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: AuthScreenBackground(
-          header: isLoginTab? 'Get Started now' : 'Sign up',
-          title: isLoginTab? 'Create an account or log in to explore about our app' : 'Already have an account?',
+          header: isLoginTab ? 'Get Started now' : 'Sign up',
+          title: isLoginTab
+              ? 'Create an account or log in to explore about our app'
+              : 'Already have an account?',
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: height / 80,
                 ),
-                loginSignupSection(width, context),
-                isLoginTab ? 
-                TabBarWithLogin(checkBox: checkBox, width: width) : SignUpTabBar()
+                loginSignupSection(height, width, context),
+                isLoginTab
+                    ? TabBarWithLogin(checkBox: checkBox, width: width)
+                    : SignUpTabBar()
               ],
             ),
           ),
@@ -38,11 +42,11 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget loginSignupSection(double width, BuildContext context) {
+  Widget loginSignupSection(double height, double width, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(height / 50),
       child: Container(
-        height: 50,
+        height: height / 18,
         width: width,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 230, 232, 237),
@@ -51,50 +55,50 @@ class _AuthScreenState extends State<AuthScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(height / 300),
               child: Container(
-                height: 50,
+                height: height / 16,
                 width: width / 2.3,
                 decoration: BoxDecoration(
-                    color: isLoginTab ? Color.fromARGB(255, 255, 255, 255) : Colors.transparent,
+                    color: isLoginTab
+                        ? Color.fromARGB(255, 255, 255, 255)
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: GestureDetector(
                     onTap: () {
                       isLoginTab = true;
-                      setState(() {
-                        
-                      });  
+                      setState(() {});
                     },
                     child: Text(
                       'Log In',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontSize: height / 46, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(height / 300),
               child: Container(
-                height: 50,
+                height: height / 16,
                 width: width / 2.3,
-                decoration:
-                    BoxDecoration(
-                     color:  isLoginTab ? Colors.transparent : Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(
+                    color: isLoginTab
+                        ? Colors.transparent
+                        : Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: GestureDetector(
                     onTap: () {
                       isLoginTab = false;
-                      setState(() {
-                        
-                      });                
+                      setState(() {});
                     },
                     child: Text(
                       'Sign up',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontSize: height / 46, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -105,7 +109,4 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-
 }
-
-

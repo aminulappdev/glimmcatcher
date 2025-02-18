@@ -11,10 +11,13 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool checkBox = false;
   @override
   Widget build(BuildContext context) {
-    
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         body: AuthScreenBackground(
@@ -24,15 +27,14 @@ class _VerifyScreenState extends State<VerifyScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
-                ),        
+                  height: height / 80,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(14.0),
+                  padding: EdgeInsets.all(height / 58),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      loginSection(),
-                                         
+                      verifyFormBuild(height, width),
                     ],
                   ),
                 )
@@ -44,36 +46,52 @@ class _VerifyScreenState extends State<VerifyScreen> {
     );
   }
 
- 
-  Widget loginSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Email',
-          style: TextStyle(
-              color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
-        ),
-         SizedBox(
-          height: 4,
-        ),
-        TextFormField(
-          decoration: InputDecoration(
-              suffixIcon: Icon(Icons.email,color: Colors.grey),
-              hintText: 'example@gmail.com',
-              hintStyle: TextStyle(color: Colors.grey)),
-        ),
-           
-        SizedBox(
-          height: 16,
-        ),
-        GradientElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => OTPVerifyScreen(),));
-            }, text: 'Verify', isRowButton: false),
-      ],
+  Widget verifyFormBuild(double height, double width) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Email',
+            style: TextStyle(
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
+          ),
+          SizedBox(
+            height: height / 200,
+          ),
+          TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter email';
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+                suffixIcon: Icon(Icons.email, color: Colors.grey),
+                hintText: 'example@gmail.com',
+                hintStyle: TextStyle(color: Colors.grey)),
+          ),
+          SizedBox(
+            height: height / 48,
+          ),
+          GradientElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OTPVerifyScreen(),
+                      ));
+                }
+              },
+              text: 'Verify',
+              isRowButton: false),
+        ],
+      ),
     );
   }
-
-
 }

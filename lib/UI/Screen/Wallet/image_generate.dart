@@ -12,6 +12,8 @@ class ImageGenerateScreen extends StatefulWidget {
 class _ImageGenerateScreenState extends State<ImageGenerateScreen> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return Expanded(
       child: GridView.builder(
         itemCount: 10,
@@ -22,7 +24,6 @@ class _ImageGenerateScreenState extends State<ImageGenerateScreen> {
             crossAxisCount: 2),
         itemBuilder: (context, index) {
           return Stack(
-
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -36,19 +37,21 @@ class _ImageGenerateScreenState extends State<ImageGenerateScreen> {
                 left: 10,
                 bottom: 10,
                 child: Container(
-            height: 36,
-            width: 36,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                   colors: AppColors.gradiantColors, ),
-                borderRadius: BorderRadius.circular(100)),
-            child: Icon(
-              Icons.download,
-              color: Colors.white,
-            ),
-          ),)
+                  height: height / 28,
+                  width: height / 28,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: AppColors.gradiantColors,
+                      ),
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+              )
             ],
           );
         },

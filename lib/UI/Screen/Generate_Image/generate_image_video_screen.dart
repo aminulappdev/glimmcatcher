@@ -16,129 +16,155 @@ class GenerateImageVideoScreen extends StatefulWidget {
 }
 
 class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Image/Video',
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Image/Video',
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                'Enter Text',
-                style: GoogleFonts.urbanist(
-                    fontWeight: FontWeight.w600, fontSize: 18),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              TextFormField(
-                maxLines: 1,
-                decoration: InputDecoration(
-                  hintText: 'Type anything',
-                  enabledBorder: GradientOutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      gradient:
-                          LinearGradient(colors: AppColors.gradiantColors),
-                      width: 1),
-                ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Descriptions',
-                style: GoogleFonts.urbanist(
-                    fontWeight: FontWeight.w600, fontSize: 18),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              TextFormField(
-                maxLines: 4,
-                decoration: InputDecoration(
-                  hintText: 'Type anything',
-                  enabledBorder: GradientOutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      gradient:
-                          LinearGradient(colors: AppColors.gradiantColors),
-                      width: 1),
-                ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Upload photo',
-                style: GoogleFonts.urbanist(
-                    fontWeight: FontWeight.w600, fontSize: 18),
-              ),
-              SizedBox(
-                height: 04,
-              ),
-              uploadPhoto(context),
-              SizedBox(
-                height: 16,
-              ),
-              captureButton(context),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreatingSplashScreen(),
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Text(
-                    'Save',
-                    style: GoogleFonts.urbanist(
-                        fontSize: 18, fontWeight: FontWeight.w700),
+        body: Padding(
+          padding: EdgeInsets.all(height / 72),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height / 72,
                   ),
-                ),
-              )
-            ],
+                  Text(
+                    'Enter Text',
+                    style: GoogleFonts.urbanist(
+                        fontWeight: FontWeight.w600, fontSize: height / 46),
+                  ),
+                  SizedBox(
+                    height: height / 72,
+                  ),
+                  TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.text,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Please type';
+                      }
+                      return null;
+                    },
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      hintText: 'Type anything',
+                      enabledBorder: GradientOutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          gradient:
+                              LinearGradient(colors: AppColors.gradiantColors),
+                          width: 1),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height / 48,
+                  ),
+                  Text(
+                    'Descriptions',
+                    style: GoogleFonts.urbanist(
+                        fontWeight: FontWeight.w600, fontSize: height / 46),
+                  ),
+                  SizedBox(
+                    height: height / 72,
+                  ),
+                  TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.text,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Please type';
+                      }
+                      return null;
+                    },
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      hintText: 'Type anything',
+                      enabledBorder: GradientOutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          gradient:
+                              LinearGradient(colors: AppColors.gradiantColors),
+                          width: 1),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height / 48,
+                  ),
+                  Text(
+                    'Upload photo',
+                    style: GoogleFonts.urbanist(
+                        fontWeight: FontWeight.w600, fontSize: height / 46),
+                  ),
+                  SizedBox(
+                    height: height / 200,
+                  ),
+                  uploadPhoto(context, height, width),
+                  SizedBox(
+                    height: height / 48,
+                  ),
+                  captureButton(context, height, width),
+                  SizedBox(
+                    height: height / 48,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreatingSplashScreen(),
+                          ),
+                        );
+                      }
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(2.0),
+                      child: Text(
+                        'Save',
+                        style: GoogleFonts.urbanist(
+                            fontSize: height / 46, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget uploadPhoto(BuildContext context) {
+  Widget uploadPhoto(BuildContext context, double height, double width) {
     return DottedBorder(
       borderType: BorderType.RRect,
       radius: Radius.circular(8),
-      padding: EdgeInsets.all(6),
+      padding: EdgeInsets.all(height / 200),
       color: Colors.black,
       strokeWidth: 1,
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         child: SizedBox(
-          height: 100,
+          height: height / 8,
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 50,
-                  width: 50,
+                  height: height / 16,
+                  width: height / 16,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(AssetPath.downloadLight),
@@ -146,7 +172,7 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
                 ),
                 Text(
                   'Drop your imager here, or browse jpg, png are allowed',
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: height / 68),
                 ),
               ],
             ),
@@ -156,7 +182,7 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
     );
   }
 
-  Widget captureButton(BuildContext context) {
+  Widget captureButton(BuildContext context, double height, double width) {
     return Center(
       child: DottedBorder(
         borderType: BorderType.RRect,
@@ -167,7 +193,7 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(50)),
           child: SizedBox(
-            height: 40,
+            height: height / 24,
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: Row(
@@ -175,24 +201,20 @@ class _GenerateImageVideoScreenState extends State<GenerateImageVideoScreen> {
                 children: [
                   Text(
                     'Capture',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: height / 50, color: Colors.grey),
                   ),
                   SizedBox(
                     width: 4,
                   ),
                   ShaderMask(
                     shaderCallback: (bounds) => LinearGradient(
-                      colors: [
-                        Color(0xFFDB92FE),
-                        Color(0xFFFBC774),
-                      ], // Provide at least two colors
+                      colors: AppColors.gradiantColors,
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ).createShader(bounds),
                     child: Icon(
                       Icons.camera_alt_outlined,
-                      color: Colors
-                          .white, // Keep this as white for the gradient effect to work
+                      color: Colors.white,
                     ),
                   ),
                 ],

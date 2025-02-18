@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/verify_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
@@ -18,46 +19,50 @@ class TabBarWithLogin extends StatefulWidget {
 }
 
 class _TabBarWithLoginState extends State<TabBarWithLogin> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   bool _obscureText = true; // Track password visibility
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding: EdgeInsets.all(height / 58),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          loginFormBuild(context),
+          loginFormBuild(context, height, width),
           SizedBox(
-            height: 12,
+            height: height / 68,
           ),
-          liner(),
+          liner(height, width),
           SizedBox(
-            height: 12,
+            height: height / 68,
           ),
-          headerSection(),
+          footerSection(height, width),
         ],
       ),
     );
   }
 
-  Widget liner() {
+  Widget liner(double height, double width) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(height / 300),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 160,
+            width: width / 2.5,
             height: 1.5,
             color: Color.fromARGB(255, 193, 191, 191),
           ),
           Text(
             'Or',
-            style: TextStyle(fontSize: 18, color: Colors.grey),
+            style: TextStyle(fontSize: height / 46, color: Colors.grey),
           ),
           Container(
-            width: 160,
+            width: width / 2.5,
             height: 1.5,
             color: const Color.fromARGB(255, 193, 191, 191),
           ),
@@ -66,36 +71,57 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
     );
   }
 
-  Widget loginFormBuild(BuildContext context) {
+  Widget loginFormBuild(BuildContext context, double height, double width) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Email',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter email';
+              }
+              if (EmailValidator.validate(value) == false) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
             decoration: InputDecoration(
                 hintText: 'example@gmail.com',
                 hintStyle: TextStyle(color: Colors.grey)),
           ),
           SizedBox(
-            height: 8,
+            height: height / 200,
           ),
           Text(
             'Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _obscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -122,7 +148,7 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
                     value: isChecked,
                     onChanged: (bool? value) {
                       setState(() {
-                        isChecked = value!; // Toggle checkbox value
+                        isChecked = value!;
                       });
                     },
                   ),
@@ -131,27 +157,28 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
               ),
               GestureDetector(
                 onTap: () {
-                  // You can add navigation logic here for forgot password
                   print("Forgot Password Clicked!");
                 },
                 child: Text(
                   'Forgot password?',
-                  style:
-                      TextStyle(color: Colors.blue, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w700),
                 ),
               ),
             ],
           ),
           SizedBox(
-            height: 16,
+            height: height / 48,
           ),
           GradientElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VerifyScreen(),
-                    ));
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VerifyScreen(),
+                      ));
+                }
               },
               text: 'Log in',
               isRowButton: false),
@@ -160,11 +187,11 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
     );
   }
 
-  Widget headerSection() {
+  Widget footerSection(double height, double width) {
     return Column(
       children: [
         Container(
-          height: 48,
+          height: height / 17,
           width: widget.width,
           decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.grey),
@@ -174,27 +201,28 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
             children: [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 12,
+                radius: height / 72,
                 child: Image.asset(
                   AssetPath.googleLogoUp,
                   fit: BoxFit.fill,
                 ),
               ),
               SizedBox(
-                width: 4,
+                width: width / 80,
               ),
               Text(
                 'Continue with google',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: height / 50, fontWeight: FontWeight.w600),
               )
             ],
           ),
         ),
         SizedBox(
-          height: 16,
+          height: height / 48,
         ),
         Container(
-          height: 48,
+          height: height / 17,
           width: widget.width,
           decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.grey),
@@ -203,18 +231,19 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 12,
+                radius: height / 72,
                 child: Image.asset(
                   AssetPath.fbLogo,
                   fit: BoxFit.fill,
                 ),
               ),
               SizedBox(
-                width: 4,
+                width: width / 80,
               ),
               Text(
                 'Continue with facebook',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: height / 50, fontWeight: FontWeight.w600),
               )
             ],
           ),

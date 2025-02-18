@@ -14,9 +14,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController otpCtrl = TextEditingController();
   bool _obscureText = true;
   bool _confirmObscureText = true;
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: AuthScreenBackground(
@@ -26,14 +28,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: height / 80,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(14.0),
+                  padding: EdgeInsets.all(height / 58),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      resetPasswordFormBuild(),
+                      resetPasswordFormBuild(height, width),
                     ],
                   ),
                 )
@@ -45,20 +47,30 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     );
   }
 
-  Widget resetPasswordFormBuild() {
+  Widget resetPasswordFormBuild(double height, double width) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Set Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _obscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -79,12 +91,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           Text(
             'Confirm Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
-         TextFormField(
+          TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
             obscureText: _confirmObscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -103,15 +124,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ),
           ),
           SizedBox(
-            height: 16,
+            height: height / 48,
           ),
           GradientElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OnboardingView(),
-                    ));
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OnboardingView(),
+                      ));
+                }
               },
               text: 'Confirm',
               isRowButton: false),

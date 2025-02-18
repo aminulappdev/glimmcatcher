@@ -17,34 +17,38 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.subscriotionAppBarColor,
-        title: Text(
-          'Payment',
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: AppColors.subscriotionGradiantrColor,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.subscriotionAppBarColor,
+          title: Text(
+            'Payment',
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
           ),
+          centerTitle: true,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: paymentBuildForm(context),
+        body: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: AppColors.subscriotionGradiantrColor,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(height / 72),
+            child: paymentBuildForm(context),
+          ),
         ),
       ),
     );
   }
 
   Column paymentBuildForm(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +59,7 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
             GradientText(
               'Account Name',
               style: GoogleFonts.urbanist(
-                  fontSize: 20, fontWeight: FontWeight.w400),
+                  fontSize: height / 44, fontWeight: FontWeight.w400),
               gradientDirection: GradientDirection.ttb,
               colors: AppColors.gradiantColors,
               gradientType: GradientType.linear,
@@ -67,13 +71,11 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                   hintText: 'Alex Carter',
                   hintStyle: GoogleFonts.nunito(color: Colors.black)),
             ),
-            SizedBox(
-              height: 8,
-            ),
+            SizedBox(height: height / 72),
             GradientText(
               'Card Number',
               style: GoogleFonts.urbanist(
-                  fontSize: 20, fontWeight: FontWeight.w400),
+                  fontSize: height / 44, fontWeight: FontWeight.w400),
               gradientDirection: GradientDirection.ttb,
               colors: AppColors.gradiantColors,
               gradientType: GradientType.linear,
@@ -87,9 +89,7 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                   hintText: '123 123 123 123',
                   hintStyle: GoogleFonts.nunito(color: Colors.black)),
             ),
-            SizedBox(
-              height: 8,
-            ),
+            SizedBox(height: height / 72),
             Row(
               children: [
                 Expanded(
@@ -99,7 +99,7 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                       GradientText(
                         'Exp Date',
                         style: GoogleFonts.urbanist(
-                            fontSize: 20, fontWeight: FontWeight.w400),
+                            fontSize: height / 44, fontWeight: FontWeight.w400),
                         gradientDirection: GradientDirection.ttb,
                         colors: AppColors.gradiantColors,
                         gradientType: GradientType.linear,
@@ -126,7 +126,7 @@ class _PaymentFieldScreenState extends State<PaymentFieldScreen> {
                       GradientText(
                         'ccv',
                         style: GoogleFonts.urbanist(
-                            fontSize: 20, fontWeight: FontWeight.w400),
+                            fontSize: height / 44, fontWeight: FontWeight.w400),
                         gradientDirection: GradientDirection.ttb,
                         colors: AppColors.gradiantColors,
                         gradientType: GradientType.linear,

@@ -18,6 +18,8 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -44,7 +46,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               ],
             ),
             Positioned(
-              bottom: 150,
+              bottom: height / 6,
               left: 0,
               right: 0,
               child: Column(
@@ -66,7 +68,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             Positioned(
               right: 0,
               left: 0,
-              bottom: 40,
+              bottom: height / 30,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: GradientElevatedButton(

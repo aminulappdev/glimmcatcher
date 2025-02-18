@@ -12,13 +12,12 @@ class CreatingSplashScreen extends StatefulWidget {
 
 class _CreatingSplashScreenState extends State<CreatingSplashScreen>
     with SingleTickerProviderStateMixin {
-  
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    
+
     // Initialize Animation Controller
     _controller = AnimationController(
       duration: const Duration(seconds: 2), // Rotation speed
@@ -47,6 +46,8 @@ class _CreatingSplashScreenState extends State<CreatingSplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF585574),
@@ -60,13 +61,13 @@ class _CreatingSplashScreenState extends State<CreatingSplashScreen>
                 animation: _controller,
                 builder: (context, child) {
                   return Transform.rotate(
-                    angle: _controller.value * 6.2832, 
+                    angle: _controller.value * 6.2832,
                     child: child,
                   );
                 },
                 child: Container(
-                  height: 80,
-                  width: 80,
+                  height: height / 12,
+                  width: height / 12,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     image: DecorationImage(
@@ -75,12 +76,12 @@ class _CreatingSplashScreenState extends State<CreatingSplashScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: height / 200),
               Text(
                 'Creating',
                 style: GoogleFonts.urbanist(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: height / 46,
                     fontWeight: FontWeight.w700),
               )
             ],

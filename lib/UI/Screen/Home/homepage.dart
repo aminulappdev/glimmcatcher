@@ -36,45 +36,48 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: MyDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            headerSection(context),
-            SizedBox(height: 8),
-            Text(
-              'What Memories Will You',
-              style: GoogleFonts.urbanist(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xff585574)),
-            ),
-            GradientText(
-              'Capture Today?',
-              style: GoogleFonts.urbanist(
-                  fontSize: 24,
-                  color: Colors.pink,
-                  fontWeight: FontWeight.w800),
-              colors: [
-                Color(0xFFDB92FE),
-                Color(0xFFFBC774),
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        key: _scaffoldKey,
+        drawer: MyDrawer(),
+        body: Padding(
+          padding: EdgeInsets.all(height / 50),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                headerSection(context, height, width),
+                SizedBox(height: height / 100),
+                Text(
+                  'What Memories Will You',
+                  style: GoogleFonts.urbanist(
+                      fontSize: height / 36,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xff585574)),
+                ),
+                GradientText(
+                  'Capture Today?',
+                  style: GoogleFonts.urbanist(
+                      fontSize: height / 36,
+                      color: Colors.pink,
+                      fontWeight: FontWeight.w800),
+                  colors: AppColors.gradiantColors,
+                ),
+                SizedBox(height: height / 58),
+                mainSection(height, width),
               ],
             ),
-            SizedBox(height: 20),
-            mainSection(),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget mainSection() {
+  Widget mainSection(double height, double width) {
     return SizedBox(
-      height: 540,
+      height: height / 1.6,
       child: GridView.builder(
         itemCount: 4,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -93,13 +96,13 @@ class _HomepageState extends State<Homepage> {
                 Text(
                   titles[index],
                   style: GoogleFonts.urbanist(
-                      fontSize: 14,
+                      fontSize: height / 58,
                       fontWeight: FontWeight.w800,
                       color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 8,
+                  height: height / 72,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -115,7 +118,7 @@ class _HomepageState extends State<Homepage> {
                     height: 30,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: AppColors.gradiantColors, 
+                        colors: AppColors.gradiantColors,
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -124,14 +127,15 @@ class _HomepageState extends State<Homepage> {
                     child: Center(
                       child: Text(
                         'Generate',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: TextStyle(
+                            color: Colors.white, fontSize: height / 68),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 16,
-                )
+                  height: height / 48,
+                ),
               ],
             ),
             decoration: BoxDecoration(
@@ -146,7 +150,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  Row headerSection(BuildContext context) {
+  Row headerSection(BuildContext context, double height, double width) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -157,10 +161,10 @@ class _HomepageState extends State<Homepage> {
                 _scaffoldKey.currentState?.openDrawer();
               },
               child: CircleAvatar(
-                radius: 25,
+                radius: height / 34,
                 backgroundColor: Colors.black,
                 child: CircleAvatar(
-                  radius: 24,
+                  radius: height / 35,
                   backgroundImage: AssetImage(AssetPath.onBoardingImage),
                 ),
               ),
@@ -171,11 +175,13 @@ class _HomepageState extends State<Homepage> {
               children: [
                 Text(
                   'Hi, Elly!',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontSize: height / 46, fontWeight: FontWeight.w700),
                 ),
                 Text(
                   'How do you feel today?',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                      fontSize: height / 58, fontWeight: FontWeight.w300),
                 ),
               ],
             ),
@@ -184,14 +190,15 @@ class _HomepageState extends State<Homepage> {
         GestureDetector(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationScreen(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => NotificationScreen(),
+              ),
+            );
           },
           child: Container(
-            height: 40,
-            width: 40,
+            height: height / 21,
+            width: height / 21,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,

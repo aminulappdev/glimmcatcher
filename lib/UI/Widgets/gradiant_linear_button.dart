@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 
 class GradientElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final bool isRowButton;
-  const GradientElevatedButton({super.key, required this.onPressed, required this.text, required this.isRowButton});
+  const GradientElevatedButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      required this.isRowButton});
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color(0xFFDB92FE),
-            Color(0xFFFBC774)
-          ], // Define gradient colors
+          colors: AppColors.gradiantColors,
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
         borderRadius: BorderRadius.circular(20),
       ),
-      child:isRowButton ? elevatedwithRow() : elevatedButton(),
+      child: isRowButton
+          ? elevatedwithRow(height, width)
+          : elevatedButton(height, width),
     );
   }
 
-  ElevatedButton elevatedwithRow() {
+  ElevatedButton elevatedwithRow(double height, double width) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
@@ -41,7 +47,7 @@ class GradientElevatedButton extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 16),
+            style: TextStyle(color: Colors.white, fontSize: height / 50),
           ),
           SizedBox(
             width: 255,
@@ -56,7 +62,7 @@ class GradientElevatedButton extends StatelessWidget {
     );
   }
 
-  ElevatedButton elevatedButton() {
+  ElevatedButton elevatedButton(double height, double width) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
@@ -70,7 +76,7 @@ class GradientElevatedButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(color: Colors.white, fontSize: height / 50),
       ),
     );
   }

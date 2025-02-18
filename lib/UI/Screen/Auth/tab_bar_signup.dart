@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 import 'package:glimmcatcher/UI/Widgets/onBoarding.dart';
@@ -11,70 +12,104 @@ class SignUpTabBar extends StatefulWidget {
 }
 
 class _SignUpTabBarState extends State<SignUpTabBar> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   bool _confirmObscureText = true;
   String? selectedGender;
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding: EdgeInsets.all(height / 58),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          signUpFormBuild(),
+          signUpFormBuild(height, width),
           SizedBox(
-            height: 12,
+            height: height / 68,
           ),
         ],
       ),
     );
   }
 
-  Widget signUpFormBuild() {
+  Widget signUpFormBuild(double height, double width) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Full Name',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter full name';
+              }
+              return null;
+            },
             decoration: InputDecoration(
-                hintText: 'full name', hintStyle: TextStyle(color: Colors.grey)),
+                hintText: 'full name',
+                hintStyle: TextStyle(color: Colors.grey)),
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           Text(
             'Email',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter email';
+              }
+              if (EmailValidator.validate(value) == false) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
             decoration: InputDecoration(
                 hintText: 'example@gmail.com',
                 hintStyle: TextStyle(color: Colors.grey)),
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           Text(
             'Gender',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           DropdownButtonFormField<String>(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter gender';
+              }
+              return null;
+            },
             decoration: InputDecoration(
               hintText: 'Gander',
               border: OutlineInputBorder(
@@ -87,7 +122,7 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
                 value: gender,
                 child: Text(
                   gender,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: height / 50),
                 ),
               );
             }).toList(),
@@ -98,14 +133,18 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
             },
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           Text(
             'Phone Number',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           IntlPhoneField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.phone,
+
             decoration: InputDecoration(
               hintText: '(+880) 1731-25',
               border: OutlineInputBorder(
@@ -118,12 +157,22 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
           Text(
             'Set Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
+            autofocus: true,
             obscureText: _obscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -144,12 +193,22 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
           Text(
             'Confirm Password',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter password';
+              }
+              return null;
+            },
+            autofocus: true,
             obscureText: _confirmObscureText,
             decoration: InputDecoration(
               suffixIcon: IconButton(
@@ -167,20 +226,21 @@ class _SignUpTabBarState extends State<SignUpTabBar> {
               hintStyle: TextStyle(color: Colors.grey),
             ),
           ),
-          SizedBox(
-            height: 16
-          ),
+          SizedBox(height: 16),
           GradientElevatedButton(
-             onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OnboardingView(),
-                    ));
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OnboardingView(),
+                      ));
+                }
               },
-               text: 'Register', isRowButton: false),
+              text: 'Register',
+              isRowButton: false),
           SizedBox(
-            height: 500,
+            height: height / 1.5,
           ),
         ],
       ),

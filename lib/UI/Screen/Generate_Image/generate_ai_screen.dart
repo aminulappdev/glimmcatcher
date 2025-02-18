@@ -12,56 +12,74 @@ class GenerateAiScreen extends StatefulWidget {
 }
 
 class _GenerateAiScreenState extends State<GenerateAiScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'AI Generate',
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'AI Generate',
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 8,
+        body: Padding(
+          padding: EdgeInsets.all(height / 72),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: height / 72),
+                Text(
+                  'Enter prompt',
+                  style: GoogleFonts.urbanist(
+                      fontWeight: FontWeight.w600, fontSize: height / 46),
+                ),
+                SizedBox(height: height / 72),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.text,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Please type';
+                    }
+                    return null;
+                  },
+                  maxLines: 7,
+                  decoration: InputDecoration(
+                    hintText: 'Type anything',
+                    enabledBorder: GradientOutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        gradient:
+                            LinearGradient(colors: AppColors.gradiantColors),
+                        width: 1),
+                  ),
+                ),
+                SizedBox(
+                  height: height / 48,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreatingSplashScreen()));
+                    }
+                  },
+                  child: Text(
+                    'Save',
+                    style: TextStyle(fontSize: height / 46),
+                  ),
+                )
+              ],
             ),
-            Text(
-              'Enter prompt',
-              style: GoogleFonts.urbanist(
-                  fontWeight: FontWeight.w600, fontSize: 18),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              maxLines: 7,
-              decoration: InputDecoration(
-                hintText: 'Type anything',
-                enabledBorder: GradientOutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                    gradient: LinearGradient(colors: AppColors.gradiantColors),
-                    width: 1),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CreatingSplashScreen()));
-              },
-              child: Text(
-                'Save',
-                style: TextStyle(fontSize: 18),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );

@@ -20,46 +20,47 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(    
-          height: 600,
+        Container(
+          height: height / 1.45,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            
             image: DecorationImage(
                 image: AssetImage(AssetPath.onBoardingImage), fit: BoxFit.fill),
           ),
         ),
         Positioned(
-          bottom: 180,
-          left: 40,
-          right: 20,
+          bottom: height / 4.5,
+          left: width / 10,
+          right: width / 15,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: 210,
+                height: height / 4,
                 decoration: BoxDecoration(
                     color: Color.fromARGB(189, 127, 127, 124),
                     borderRadius: BorderRadiusDirectional.circular(20)),
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(height / 72),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         Text(
                           'Join Our Community!',
                           style: TextStyle(
-                              fontSize: 36,
+                              fontSize: height / 24,
                               fontWeight: FontWeight.w800,
                               color: Colors.white),
                         ),
                         Text(
                           'Share your moments to inspire and connect with others, spreading positivity and gratitude.',
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: height / 46,
                               fontWeight: FontWeight.w300,
                               color: Colors.white),
                         )
@@ -69,11 +70,11 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: -34,
-                right: 60,
+                top: -(height / 24),
+                right: width / 8,
                 child: Container(
-                  height: 60,
-                  width: 60,
+                  height: height / 15,
+                  width: width / 7,
                   decoration: BoxDecoration(
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(100),
@@ -84,11 +85,11 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 40,
+                top: height / 24,
                 right: 0,
                 child: Container(
-                  height: 40,
-                  width: 40,
+                  height: height / 22,
+                  width: width / 10,
                   decoration: BoxDecoration(
                     border: Border.all(width: 3, color: Colors.white),
                     borderRadius: BorderRadius.circular(100),
@@ -102,8 +103,8 @@ class OnboardingPage extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 32,
-          right: 20,
+          top: height / 20,
+          right: width / 20,
           child: GestureDetector(
             onTap: () {},
             child: Container(
@@ -112,16 +113,21 @@ class OnboardingPage extends StatelessWidget {
                 color: Colors.transparent,
                 border: Border.all(width: 1, color: Colors.white),
               ),
-              height: 36,
-              width: 80,
+              height: height / 22,
+              width: width / 5,
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MainButtonNavbarScreen(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainButtonNavbarScreen(),
+                        ));
                   },
                   child: Text(
                     'Skip',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style:
+                        TextStyle(color: Colors.white, fontSize: height / 50),
                   ),
                 ),
               ),
@@ -131,5 +137,4 @@ class OnboardingPage extends StatelessWidget {
       ],
     );
   }
- 
 }

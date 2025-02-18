@@ -11,6 +11,8 @@ class WalletVoiceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Expanded(
       child: ListView.builder(
         itemCount: 5,
@@ -18,14 +20,13 @@ class WalletVoiceScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Container(
-              height: 80,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(color: Colors.black12),
                   borderRadius: BorderRadius.circular(20)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(height / 100),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -35,23 +36,23 @@ class WalletVoiceScreen extends StatelessWidget {
                         Text(
                           'Louis Hamilton',
                           style: GoogleFonts.urbanist(
-                              fontWeight: FontWeight.w600, fontSize: 20),
+                              fontWeight: FontWeight.w600,
+                              fontSize: height / 44),
                         ),
                         SizedBox(
-                          height: 04,
+                          height: height / 200,
                         ),
                         Row(
                           children: [
                             ShaderMask(
                               shaderCallback: (bounds) => LinearGradient(
-                               colors: AppColors.gradiantColors, 
+                                colors: AppColors.gradiantColors,
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ).createShader(bounds),
                               child: Icon(
                                 Icons.calendar_month,
-                                color: Colors
-                                    .white, 
+                                color: Colors.white,
                               ),
                             ),
                             GradientText(
@@ -64,8 +65,8 @@ class WalletVoiceScreen extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      height: 40,
-                      width: 160,
+                      height: height / 24,
+                      width: width / 3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
@@ -75,15 +76,14 @@ class WalletVoiceScreen extends StatelessWidget {
                     ),
                     ShaderMask(
                       shaderCallback: (bounds) => LinearGradient(
-                       colors: AppColors.gradiantColors, 
+                        colors: AppColors.gradiantColors,
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ).createShader(bounds),
                       child: Icon(
-                        size: 32,
+                        size: height / 24,
                         Icons.play_circle,
-                        color: Colors
-                            .white, 
+                        color: Colors.white,
                       ),
                     ),
                   ],

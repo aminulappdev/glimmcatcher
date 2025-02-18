@@ -14,14 +14,16 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: 260,
+      width: width / 1.5,
       child: Drawer(
         child: ListView(
           children: <Widget>[
-            drawerHeader(context),
+            drawerHeader(context, height, width),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(height / 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -33,9 +35,9 @@ class MyDrawer extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ProfileUpdateScreen()),
                     );
-                  }),
+                  }, height, width),
                   SizedBox(
-                    height: 20,
+                    height: height / 44,
                   ),
                   costomRow(context, Icons.lock_outline, 'Changed password',
                       Icons.chevron_right, () {
@@ -44,9 +46,9 @@ class MyDrawer extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ChangePasswordScreen()),
                     );
-                  }),
+                  }, height, width),
                   SizedBox(
-                    height: 20,
+                    height: height / 44,
                   ),
                   costomRow(
                       context, Icons.info_outline, 'About', Icons.chevron_right,
@@ -61,9 +63,9 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                     );
-                  }),
+                  }, height, width),
                   SizedBox(
-                    height: 20,
+                    height: height / 44,
                   ),
                   costomRow(context, Icons.gavel, 'Privacy Policy',
                       Icons.chevron_right, () {
@@ -77,9 +79,9 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                     );
-                  }),
+                  }, height, width),
                   SizedBox(
-                    height: 20,
+                    height: height / 44,
                   ),
                   costomRow(context, Icons.description, 'Terms of Services',
                       Icons.chevron_right, () {
@@ -93,9 +95,9 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                     );
-                  }),
+                  }, height, width),
                   SizedBox(
-                    height: 20,
+                    height: height / 44,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -112,25 +114,26 @@ class MyDrawer extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              height: 28,
-                              width: 28,
+                              height: height / 30,
+                              width: height / 30,
                               decoration: BoxDecoration(
                                 color: Colors.red,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Icon(
-                                size: 18,
+                                size: height / 44,
                                 Icons.logout_outlined,
                                 color: Colors.white,
                               ),
                             ),
                             SizedBox(
-                              width: 8,
+                              width: width / 40,
                             ),
                             Text(
                               'Sign out',
                               style: GoogleFonts.urbanist(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
+                                  fontSize: height / 50,
+                                  fontWeight: FontWeight.w500),
                             )
                           ],
                         ),
@@ -147,7 +150,7 @@ class MyDrawer extends StatelessWidget {
     );
   }
 
-  DrawerHeader drawerHeader(BuildContext context) {
+  DrawerHeader drawerHeader(BuildContext context, double height, double width) {
     return DrawerHeader(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -156,38 +159,42 @@ class MyDrawer extends StatelessWidget {
             colors: AppColors.gradiantColors),
       ),
       child: Center(
-          child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(AssetPath.aiGenerate),
-              radius: 30,
+          child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: height / 48),
+              child: CircleAvatar(
+                backgroundImage: AssetImage(AssetPath.aiGenerate),
+                radius: height / 28,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            'Ostad Nazmul Huda',
-            style: TextStyle(
-                fontSize: 16, color: Colors.white, fontWeight: FontWeight.w700),
-          ),
-          Text(
-            'ostadnazmulboss@gmail.com',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w300,
-              fontSize: 12,
+            SizedBox(
+              height: height / 100,
             ),
-          ),
-        ],
+            Text(
+              'Ostad Nazmul Huda',
+              style: TextStyle(
+                  fontSize: height / 50,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700),
+            ),
+            Text(
+              'ostadnazmulboss@gmail.com',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+                fontSize: height / 68,
+              ),
+            ),
+          ],
+        ),
       )),
     );
   }
 
   Row costomRow(BuildContext context, IconData circleIcon, String name,
-      IconData icon, VoidCallback navigator) {
+      IconData icon, VoidCallback navigator, double height, double width) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -196,8 +203,8 @@ class MyDrawer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                height: 28,
-                width: 28,
+                height: height / 30,
+                width: height / 30,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -206,18 +213,18 @@ class MyDrawer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(
-                  size: 18,
+                  size: height / 44,
                   circleIcon,
                   color: Colors.white,
                 ),
               ),
               SizedBox(
-                width: 8,
+                width: width / 40,
               ),
               Text(
                 name,
                 style: GoogleFonts.urbanist(
-                    fontSize: 16, fontWeight: FontWeight.w500),
+                    fontSize: height / 50, fontWeight: FontWeight.w500),
               )
             ],
           ),

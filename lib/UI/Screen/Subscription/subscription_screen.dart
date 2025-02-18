@@ -16,85 +16,89 @@ class SubscriptionScreen extends StatefulWidget {
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
+  bool isMonthly = true;
+  bool isYearly = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 217, 179, 234),
-        title: Text(
-          'Subscriptions',
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: AppColors.subscriotionGradiantrColor,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 217, 179, 234),
+          title: Text(
+            'Subscriptions',
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
           ),
+          centerTitle: true,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 36,
-                ),
-                SvgPicture.asset(
-                  AssetPath.splashScreenLogo,
-                  width: 80,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: 220,
-                  child: Text(
-                    'Unlock the most powerful AI research assitant',
-                    style: GoogleFonts.urbanist(
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
+        body: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: AppColors.subscriotionGradiantrColor,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(height / 72),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: height / 24,
                   ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                costomRow('Unlock AI generate image'),
-                SizedBox(
-                  height: 6,
-                ),
-                costomRow('Pro support from our team'),
-                SizedBox(
-                  height: 6,
-                ),
-                costomRow('Early access to new features'),
-                SizedBox(
-                  height: 20,
-                ),
-                packageSection(),
-                SizedBox(
-                  height: 40,
-                ),
-                GradientElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PaymentFieldScreen(),
-                        ),
-                      );
-                    },
-                    text: 'Subscribe',
-                    isRowButton: false),
-              ],
+                  SvgPicture.asset(
+                    AssetPath.splashScreenLogo,
+                    width: 80,
+                  ),
+                  SizedBox(
+                    height: height / 80,
+                  ),
+                  SizedBox(
+                    width: width / 1.8,
+                    child: Text(
+                      'Unlock the most powerful AI research assitant',
+                      style: GoogleFonts.urbanist(
+                        fontSize: height / 46,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    height: height / 30,
+                  ),
+                  costomRow('Unlock AI generate image', height, width),
+                  SizedBox(
+                    height: height / 160,
+                  ),
+                  costomRow('Pro support from our team', height, width),
+                  SizedBox(
+                    height: height / 160,
+                  ),
+                  costomRow('Early access to new features', height, width),
+                  SizedBox(
+                    height: height / 30,
+                  ),
+                  packageSection(height, width),
+                  SizedBox(
+                    height: height / 20,
+                  ),
+                  GradientElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaymentFieldScreen(),
+                          ),
+                        );
+                      },
+                      text: 'Subscribe',
+                      isRowButton: false),
+                ],
+              ),
             ),
           ),
         ),
@@ -102,146 +106,187 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     );
   }
 
-  Widget packageSection() {
+  Widget packageSection(double height, double width) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 180,
-              width: 175,
-              decoration: BoxDecoration(
-                  border: const GradientBoxBorder(
-                    gradient: LinearGradient(colors: [
-                      Color(0xFFDB92FE),
-                      Color(0xFFFBC774),
-                    ]),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GradientText(
-                          'Monthly',
-                          style: GoogleFonts.urbanist(
-                              fontSize: 24,
-                              color: Colors.pink,
-                              fontWeight: FontWeight.w400),
-                          colors: [
-                            Color(0xFFDB92FE),
-                            Color(0xFFFBC774),
-                          ],
-                        ),
-                        GradientText(
-                          '\$20.00',
-                          style: GoogleFonts.urbanist(
-                              fontSize: 28,
-                              color: Colors.pink,
-                              fontWeight: FontWeight.w800),
-                          colors: [
-                            Color(0xFFDB92FE),
-                            Color(0xFFFBC774),
-                          ],
-                        ),
-                      ],
-                    ),
-                    GradientText(
-                      'Select your plan',
-                      style: GoogleFonts.urbanist(
-                          fontSize: 16, fontWeight: FontWeight.w400),
-                      colors: [
-                        Color(0xFFDB92FE),
-                        Color(0xFFFBC774),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              top: -10,
-              right: 0,
-              child: Container(
-                height: 30,
-                width: 30,
+        GestureDetector(
+          onTap: () {
+            isMonthly = true;
+            isYearly = false;
+            setState(() {});
+          },
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                height: height / 4.5,
+                width: width / 2.2,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFDB92FE),
-                      Color(0xFFFBC774),
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(
+                        colors: isMonthly
+                            ? AppColors.gradiantColors
+                            : [Colors.black, Colors.black],
+                      ),
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: EdgeInsets.all(height / 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GradientText(
+                            'Monthly',
+                            style: GoogleFonts.urbanist(
+                                fontSize: height / 36,
+                                fontWeight: FontWeight.w400),
+                            colors: isMonthly
+                                ? AppColors.gradiantColors
+                                : [Colors.black, Colors.black],
+                          ),
+                          GradientText(
+                            '\$20.00',
+                            style: GoogleFonts.urbanist(
+                                fontSize: height / 30,
+                                fontWeight: FontWeight.w800),
+                            colors: isMonthly
+                                ? AppColors.gradiantColors
+                                : [Colors.black, Colors.black],
+                          ),
+                        ],
+                      ),
+                      GradientText(
+                        'Select your plan',
+                        style: GoogleFonts.urbanist(
+                            fontSize: height / 50, fontWeight: FontWeight.w400),
+                        colors: isMonthly
+                            ? AppColors.gradiantColors
+                            : [Colors.black, Colors.black],
+                      ),
                     ],
                   ),
                 ),
-                child: Icon(Icons.done, color: Colors.white),
               ),
-            ),
-          ],
-        ),
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 180,
-              width: 175,
-              decoration: BoxDecoration(
-                border: Border.all(
-                    width: 1, color: const Color.fromARGB(160, 0, 0, 0)),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Monthly',
-                          style: GoogleFonts.urbanist(
-                              fontSize: 24,
-                              color: const Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                        Text(
-                          '\$200',
-                          style: GoogleFonts.urbanist(
-                              fontSize: 28,
-                              color: const Color.fromARGB(255, 0, 0, 0),
-                              fontWeight: FontWeight.w800),
-                        ),
-                      ],
+              Visibility(
+                visible: isMonthly,
+                child: Positioned(
+                  top: -10,
+                  right: 0,
+                  child: Container(
+                    height: height / 30,
+                    width: height / 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: AppColors.gradiantColors,
+                      ),
                     ),
-                    Text(
-                      'Select your plan',
-                      style: GoogleFonts.urbanist(
-                          fontSize: 16,
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
+                    child: Icon(Icons.done, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            isMonthly = false;
+            isYearly = true;
+            setState(() {});
+          },
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                height: height / 4.5,
+                width: width / 2.2,
+                decoration: BoxDecoration(
+                    border: GradientBoxBorder(
+                      gradient: LinearGradient(
+                        colors: isYearly
+                            ? AppColors.gradiantColors
+                            : [Colors.black, Colors.black],
+                      ),
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: EdgeInsets.all(height / 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GradientText(
+                            'Yearly',
+                            style: GoogleFonts.urbanist(
+                                fontSize: height / 36,
+                                fontWeight: FontWeight.w400),
+                            colors: isYearly
+                                ? AppColors.gradiantColors
+                                : [Colors.black, Colors.black],
+                          ),
+                          GradientText(
+                            '\$200.00',
+                            style: GoogleFonts.urbanist(
+                                fontSize: height / 30,
+                                fontWeight: FontWeight.w800),
+                            colors: isYearly
+                                ? AppColors.gradiantColors
+                                : [Colors.black, Colors.black],
+                          ),
+                        ],
+                      ),
+                      GradientText(
+                        'Select your plan',
+                        style: GoogleFonts.urbanist(
+                            fontSize: height / 50, fontWeight: FontWeight.w400),
+                        colors: isYearly
+                            ? AppColors.gradiantColors
+                            : [Colors.black, Colors.black],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: isYearly,
+                child: Positioned(
+                  top: -10,
+                  right: 0,
+                  child: Container(
+                    height: height / 30,
+                    width: height / 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: AppColors.gradiantColors,
+                      ),
+                    ),
+                    child: Icon(Icons.done, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
 
-  Widget costomRow(String name) {
+  Widget costomRow(String name, double height, double width) {
     return Row(
       children: [
         ShaderMask(
@@ -261,7 +306,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         Text(
           name,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: height / 50,
             color: Color(0xFFDB92FE),
           ),
         ),

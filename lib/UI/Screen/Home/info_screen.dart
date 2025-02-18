@@ -7,22 +7,30 @@ class InfoScreen extends StatelessWidget {
   final String data;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: AppBar(
-        title: Text(
-          appBarTitle,
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            appBarTitle,
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(data,style: GoogleFonts.urbanist(),textAlign: TextAlign.justify,)
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(height / 72),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  data,
+                  style: GoogleFonts.urbanist(),
+                  textAlign: TextAlign.justify,
+                )
+              ],
+            ),
           ),
         ),
       ),

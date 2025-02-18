@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,165 +16,201 @@ class ProfileUpdateScreen extends StatefulWidget {
 
 class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   String? selectedGender;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   File? image;
 
   Future<void> _pickImageFromCamera() async {
-  try {
-    final pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (pickedImage != null) {
-      setState(() {
-        image = File(pickedImage.path);
-      });
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedImage != null) {
+        setState(() {
+          image = File(pickedImage.path);
+        });
+      }
+    } catch (e) {
+      debugPrint("Error picking image: $e");
+    } finally {
+      if (mounted) Navigator.pop(context);
     }
-  } catch (e) {
-    debugPrint("Error picking image: $e");
-  } finally {
-    if (mounted) Navigator.pop(context); 
   }
-}
 
-Future<void> _pickImageFromGallery() async {
-  try {
-    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
-      setState(() {
-        image = File(pickedImage.path);
-      });
+  Future<void> _pickImageFromGallery() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        setState(() {
+          image = File(pickedImage.path);
+        });
+      }
+    } catch (e) {
+      debugPrint("Error picking image: $e");
+    } finally {
+      if (mounted) Navigator.pop(context);
     }
-  } catch (e) {
-    debugPrint("Error picking image: $e");
-  } finally {
-    if (mounted) Navigator.pop(context);
   }
-}
 
-  Future<XFile> _compressImage(File image) async {
-    final compressImage = await FlutterImageCompress.compressAndGetFile(
-        image.absolute.path, '${image.path}_compress.jpg');
-    return compressImage!;
-  }
+  // Future<XFile> _compressImage(File image) async {
+  //   final compressImage = await FlutterImageCompress.compressAndGetFile(
+  //       image.absolute.path, '${image.path}_compress.jpg');
+  //   return compressImage!;
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Edit profile',
-          style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Edit profile',
+            style: GoogleFonts.urbanist(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.all(14.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: EdgeInsets.all(height / 58),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  Center(
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage(AssetPath.aiGenerate),
-                          radius: 45,
-                          child: image != null
-                              ? ClipOval(
-                                  child: Image.file(
-                                    image!,
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: AssetImage(AssetPath.aiGenerate),
+                              radius: height / 22,
+                              child: image != null
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        image!,
+                                        width: height / 11,
+                                        height: height / 11,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : Container(),
+                            ),
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: IconButton(
+                                  onPressed: () {
+                                    showAlertDialog(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.camera,
+                                    color: Colors.green,
                                   ),
-                                )
-                              : Container(),
-                        ),
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                              onPressed: () {
-                                showAlertDialog(context);
-                              },
-                              icon: Icon(
-                                Icons.camera,
-                                color: Colors.green,
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: height / 200,
+                      ),
+                      buildForm(height, width),
+                    ],
                   ),
                   SizedBox(
-                    height: 4,
+                    height: height / 7,
                   ),
-                  buildForm(),
+                  ElevatedButton(
+                    onPressed: elevatedButton,
+                    child: Text('Update'),
+                  )
                 ],
               ),
-              ElevatedButton(
-                onPressed: elevatedButton,
-                child: Text('Update'),
-              )
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Form buildForm() {
+  Form buildForm(double height, double width) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Full Name',
             style: TextStyle(
-                color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                color: const Color.fromARGB(255, 0, 0, 0),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.text,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter name';
+              }
+              return null;
+            },
             decoration: InputDecoration(
                 hintText: 'Enter your name',
                 hintStyle:
                     TextStyle(color: const Color.fromARGB(255, 0, 0, 0))),
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           Text(
             'Email address',
             style: TextStyle(
-                color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                color: const Color.fromARGB(255, 0, 0, 0),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 4,
+            height: height / 200,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter email';
+              }
+              if (EmailValidator.validate(value) == false) {
+                return 'Enter a valid email address';
+              }
+              return null;
+            },
             decoration: InputDecoration(
                 hintText: 'example@gmail.com',
                 hintStyle:
                     TextStyle(color: const Color.fromARGB(255, 0, 0, 0))),
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           Text(
             'Phone Number',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           IntlPhoneField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.phone,
+
             decoration: InputDecoration(
               hintText: '(+880) 1731-25',
               border: OutlineInputBorder(
@@ -187,10 +223,11 @@ Future<void> _pickImageFromGallery() async {
           Text(
             'Gender',
             style: TextStyle(
-                color: const Color.fromARGB(255, 137, 136, 136), fontSize: 16),
+                color: const Color.fromARGB(255, 137, 136, 136),
+                fontSize: height / 50),
           ),
           SizedBox(
-            height: 8,
+            height: height / 100,
           ),
           DropdownButtonFormField<String>(
             decoration: InputDecoration(
@@ -205,7 +242,7 @@ Future<void> _pickImageFromGallery() async {
                 value: gender,
                 child: Text(
                   gender,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: height / 50),
                 ),
               );
             }).toList(),
@@ -229,7 +266,6 @@ Future<void> _pickImageFromGallery() async {
             borderRadius: BorderRadius.circular(20),
           ),
           content: SizedBox(
-            width: 100,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -254,9 +290,11 @@ Future<void> _pickImageFromGallery() async {
   }
 
   Future<void> elevatedButton() async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MainButtonNavbarScreen()),
-    );
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainButtonNavbarScreen()),
+      );
+    }
   }
 }
