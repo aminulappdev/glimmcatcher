@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/verify_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
 
@@ -157,7 +158,12 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
               ),
               GestureDetector(
                 onTap: () {
-                  print("Forgot Password Clicked!");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VerifyScreen(),
+                    ),
+                  );
                 },
                 child: Text(
                   'Forgot password?',
@@ -174,10 +180,11 @@ class _TabBarWithLoginState extends State<TabBarWithLogin> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VerifyScreen(),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainButtonNavbarScreen(),
+                    ),
+                  );
                 }
               },
               text: 'Log in',

@@ -73,7 +73,7 @@ class _GenerateAiScreenState extends State<GenerateAiScreen> {
                     }
                   },
                   child: Text(
-                    'Save',
+                    'Generate',
                     style: TextStyle(fontSize: height / 46),
                   ),
                 )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Generate_Image/creating_splash_screen.dart';
+import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
@@ -66,9 +67,11 @@ class _TextScreenState extends State<TextScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CreatingSplashScreen()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainButtonNavbarScreen(),
+                        ),
+                      );
                     }
                   },
                   child: Text(

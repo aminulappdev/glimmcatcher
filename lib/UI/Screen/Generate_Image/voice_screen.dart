@@ -1,12 +1,12 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/app_colors.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-import 'creating_splash_screen.dart';
 
 class VoiceScreen extends StatefulWidget {
   const VoiceScreen({super.key});
@@ -21,6 +21,8 @@ class _VoiceScreenState extends State<VoiceScreen> {
   bool isListening = false;
   String recordedText = "";
   String? selectedFile;
+
+  
 
   void startListening() async {
     bool available = await speechToText.initialize();
@@ -118,7 +120,7 @@ class _VoiceScreenState extends State<VoiceScreen> {
                             color: Colors.purple),
                         onPressed: pickFile,
                       ),
-                      hintText: 'Upload PDF or TXT',
+                      hintText: 'Upload',
                       enabledBorder: GradientOutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         gradient:
@@ -134,7 +136,7 @@ class _VoiceScreenState extends State<VoiceScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CreatingSplashScreen(),
+                            builder: (context) => const MainButtonNavbarScreen(),
                           ),
                         );
                       }
