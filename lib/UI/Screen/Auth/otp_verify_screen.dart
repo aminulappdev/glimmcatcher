@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/auth_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/reset_password_screen.dart';
 import 'package:glimmcatcher/UI/Widgets/auth_screen_background.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
@@ -81,7 +82,7 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResetPasswordScreen(),
+                        builder: (context) => AuthScreen(),
                       ));
                 }
               },

@@ -15,17 +15,26 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     // double width = MediaQuery.of(context).size.width;
+    
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             PageView(
               controller: _pageController,
+              onPageChanged: (index) {
+                setState(
+                  () {
+                    _currentPage = index;
+                  },
+                );
+              },
               children: [
                 OnboardingPage(
                   image: AssetPath.googleLogo,
@@ -73,12 +82,21 @@ class _OnboardingViewState extends State<OnboardingView> {
                 padding: const EdgeInsets.all(15.0),
                 child: GradientElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AuthScreen(),
-                      ),
-                    );
+                    {
+                      if (_currentPage < 1) {
+                        _pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AuthScreen(),
+                          ),
+                        );
+                      }
+                    }
                   },
                   text: 'Next',
                   isRowButton: true,

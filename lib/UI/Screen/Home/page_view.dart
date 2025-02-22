@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glimmcatcher/UI/Screen/Auth/auth_screen.dart';
 import 'package:glimmcatcher/UI/Screen/Home/main_bottom_navbar_screen.dart';
 import 'package:glimmcatcher/UI/Utils/asset_path.dart';
 
@@ -121,7 +122,7 @@ class OnboardingPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MainButtonNavbarScreen(),
+                          builder: (context) => AuthScreen(),
                         ));
                   },
                   child: Text(
