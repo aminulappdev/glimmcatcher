@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:glimmcatcher/UI/Screen/Auth/verify_screen.dart';
 import 'package:glimmcatcher/UI/Widgets/gradiant_linear_button.dart';
-import 'package:glimmcatcher/UI/Widgets/onBoarding.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignUpTabBar extends StatefulWidget {
